@@ -5,7 +5,7 @@ env:
     GH_TOKEN: ${{ github.token }}
     STARTER: https://github.com/ucsb-cs156/proj-gauchoride
     STARTER_NAME: ucsb-cs156/proj-gauchoride
-    TAG: w24
+    TAG: ${{vars.QXX}}
 on:
   workflow_dispatch:
 
