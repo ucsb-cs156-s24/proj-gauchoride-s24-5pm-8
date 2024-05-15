@@ -1,12 +1,12 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
+import RiderApplicationEditPageMember from "main/pages/RiderApplication/RiderApplicationEditPageMember";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
-import RiderApplicationEditPageMember from "main/pages/RiderApplication/RiderApplicationEditPageMember";
 
-import { apiCurrentUserFixtures} from "fixtures/currentUserFixtures";
-import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 
 import mockConsole from "jest-mock-console";
 
@@ -191,6 +191,8 @@ describe("RiderApplicationEditPage tests", () => {
             expect(axiosMock.history.put[0].data).toBe(JSON.stringify({
                 perm_number: "7654321",
                 description: "I broke my leg.",
+                notes: "",
+                status: "pending"
             })); // posted object
 
         });

@@ -77,20 +77,30 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 hasRole(currentUser, "ROLE_ADMIN") && (
                   <NavDropdown title="Admin" id="appnavbar-admin-dropdown" data-testid="appnavbar-admin-dropdown" >
                     <NavDropdown.Item as={Link} to="/admin/users">Users</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/admin/driverAvailability">Driver Availabilities</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/admin/applications/riders">Rider Applications</NavDropdown.Item>
                   </NavDropdown>
                 )
               }
               {
                 hasRole(currentUser, "ROLE_DRIVER") && (
-                  <NavDropdown title="Driver DashBoard" id="appnavbar-driver-dropdown" data-testid="appnavbar-driver-dropdown" >
+                  <NavDropdown title="Driver Dashboard" id="appnavbar-driver-dropdown" data-testid="appnavbar-driver-dropdown" >
                   <NavDropdown.Item as={Link} to="/drivershifts">Dashboard</NavDropdown.Item>
                 </NavDropdown>
                 )
               }
               {
-                isParticipant(currentUser) && (
+                !hasRole(currentUser, "ROLE_DRIVER") && isParticipant(currentUser) && (
                   <NavDropdown title="Shifts" id="appnavbar-shift-dropdown" data-testid="appnavbar-shift-dropdown" >
                     <NavDropdown.Item data-testid="appnavbar-shift-dropdown-shifts" as={Link} to="/shift/">Shifts</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
+              {
+                hasRole(currentUser, "ROLE_DRIVER") && isParticipant(currentUser) && (
+                  <NavDropdown title="Shifts" id="appnavbar-shift-dropdown" data-testid="appnavbar-shift-dropdown" >
+                    <NavDropdown.Item data-testid="appnavbar-shift-dropdown-shifts" as={Link} to="/shift/">Shifts</NavDropdown.Item>
+                    <NavDropdown.Item data-testid="appnavbar-availability-dropdown-availabilities" as={Link} to="/availability/">Availability</NavDropdown.Item>
                   </NavDropdown>
                 )
               }
@@ -115,8 +125,8 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 )
               }
               {
-                hasRole(currentUser, "ROLE_MEMBER") && (
-                  <Nav.Link as={Link} to="/apply/rider">Apply to be a Rider</Nav.Link>
+                !hasRole(currentUser, "ROLE_RIDER") && (
+                  <Nav.Link id ="appnavbar-applytobearider-link" data-testid="appnavbar-applytoberider" as={Link} to="/apply/rider">Apply to be a Rider</Nav.Link>
                 )
               }
 
