@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/proj-gauchoride-s24-5pm-8
 owner: ucsb-cs156-s24
 repo_name: proj-gauchoride-s24-5pm-8
-pull_requests: [{"author":{"id":"U_kgDOB3DoXA","is_bot":false,"login":"TheRealAndrxw","name":"Andrew Vosgueritchian"},"headRefName":"AV-RideForm-Bug","number":18,"title":"AV-Fixed Incorrect Labels on Ride Form","url":"https://github.com/ucsb-cs156-s24/proj-gauchoride-s24-5pm-8/pull/18"}]
+pull_requests: [{"author":{"id":"U_kgDOB3DoXA","is_bot":false,"login":"TheRealAndrxw","name":"Andrew Vosgueritchian"},"headRefName":"AV-DriversController-Bug","number":19,"title":"Av drivers controller bug","url":"https://github.com/ucsb-cs156-s24/proj-gauchoride-s24-5pm-8/pull/19"},{"author":{"id":"U_kgDOB3DoXA","is_bot":false,"login":"TheRealAndrxw","name":"Andrew Vosgueritchian"},"headRefName":"AV-RideForm-Bug","number":18,"title":"AV-Fixed Incorrect Labels on Ride Form","url":"https://github.com/ucsb-cs156-s24/proj-gauchoride-s24-5pm-8/pull/18"}]
