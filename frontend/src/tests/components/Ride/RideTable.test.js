@@ -128,7 +128,7 @@ describe("RideTable tests", () => {
 
     const currentUser = currentUserFixtures.userOnly;
 
-    const { getByText, getByTestId } = render(
+    const {getByTestId} = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <RideTable ride={rideFixtures.threeRidesTable} currentUser={currentUser} />
