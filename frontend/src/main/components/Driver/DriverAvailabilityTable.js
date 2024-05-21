@@ -17,11 +17,6 @@ export default function DriverAvailabilityTable({
         navigate(`/availability/edit/${cell.row.values.id}`)
     }
 
-    // Commented out because it is not used in the code
-    // const reviewCallback = (cell) => {
-    //     navigate(`/admin/availability/review/${cell.row.values.id}`)
-    // }
-
     // Stryker disable all : hard to test for query caching
 
     const deleteMutation = useBackendMutation(
@@ -72,13 +67,9 @@ export default function DriverAvailabilityTable({
         ButtonColumn("Delete", "danger", deleteCallback, "DriverAvailabilityTable")
     ];
 
-    const buttonColumnsAdmin = [
-        ...columns,
-        
-    ];
     // Stryker restore all 
 
-    const columnsToDisplay = (hasRole(currentUser, "ROLE_ADMIN")) ? buttonColumnsAdmin : (hasRole(currentUser, "ROLE_DRIVER")) ? buttonColumnsDriver : columns;
+    const columnsToDisplay = (hasRole(currentUser, "ROLE_DRIVER")) ? buttonColumnsDriver : columns;
 
     return <OurTable
         data={Availability}
