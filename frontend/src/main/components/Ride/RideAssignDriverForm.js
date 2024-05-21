@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "Assign Driver" }) {
     const navigate = useNavigate();
     
+
     // Stryker disable all
     const {
         register,
@@ -16,8 +17,47 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
     } = useForm(
         { defaultValues: initialContents }
     );
-    // Stryker enable all
-   
+
+
+    const [shifts, setShifts] = useState([]);
+    useEffect(() => {
+        // Fetch the shifts from the backend
+        const fetchShifts = async () => {
+            try {
+                const response = await fetch('/api/shift/all');
+                const data = await response.json();
+                setShifts(data);
+            } catch (error) {
+                console.error('Error fetching shifts:', error);
+            }
+        };
+        fetchShifts();
+    }, []);
+
+    const [driver, setDriver] = useState([]);
+    useEffect(() => {
+        // Fetch the shifts from the backend
+        const fetchShifts = async () => {
+            try {
+                const response = await fetch('/api/drivers/all');
+                const data = await response.json();
+                setDriver(data);
+            } catch (error) {
+                console.error('Error fetching shifts:', error);
+            }
+        };
+        fetchShifts();
+    }, []);
+
+    shifts.forEach(shifts => {   // link the driver to the shift
+        driver.forEach(driver => {
+            if (shifts.driverID === driver.id) {
+                shifts.driver = driver.fullName;
+            }
+        });
+    });
+
+
     const testIdPrefix = "RideAssignDriverForm";
 
 
@@ -43,18 +83,24 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
 
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="shiftId">Shift Id</Form.Label>
-                <Form.Control
+                <Form.Select
                     data-testid={testIdPrefix + "-shiftId"}
                     id="shiftId"
-                    type="text"
-                    isInvalid={Boolean(errors.pickupBuilding)}
+                    defaultValue={initialContents?.shiftId}
+                    isInvalid={Boolean(errors.shiftId)}
+
                     {...register("shiftId", {
-                        required: "Shift Id Up Building is required."
+                        required: "Shift Id is required."
                     })}
-                    defaultValue={initialContents?.pickupBuilding} 
-                />
+                >
+                    {shifts.map(shifts=> (
+                        <option key={shifts.id} value={shifts.id}>
+                            {shifts.id} - {shifts.driver} - {shifts.day} {shifts.shiftStart}-{shifts.shiftEnd}
+                        </option>
+                    ))}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">
-                    {errors.pickupBuilding?.message}
+                    {errors.shiftId?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
