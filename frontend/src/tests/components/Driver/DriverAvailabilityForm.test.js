@@ -156,4 +156,35 @@ describe("DriverAvailabilityForm tests", () => {
         expect(screen.queryByText(/End time is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Notes are required./)).not.toBeInTheDocument();
     });
+
+    test("displays error messages for invalid time format", async () => {
+        await act(async () => {
+            render(
+                <QueryClientProvider client={queryClient}>
+                    <Router>
+                        <DriverAvailabilityForm />
+                    </Router>
+                </QueryClientProvider>
+            );
+        });
+
+        const dayField = screen.getByTestId("DriverAvailabilityForm-day");
+        const startTimeField = screen.getByTestId("DriverAvailabilityForm-startTime");
+        const endTimeField = screen.getByTestId("DriverAvailabilityForm-endTime");
+        const notesField = screen.getByTestId("DriverAvailabilityForm-notes");
+        const submitButton = screen.getByTestId("DriverAvailabilityForm-submit");
+
+        await act(async () => {
+            fireEvent.change(dayField, { target: { value: 'Monday' } });
+            fireEvent.change(startTimeField, { target: { value: 'invalid' } });
+            fireEvent.change(endTimeField, { target: { value: 'invalid' } });
+            fireEvent.change(notesField, { target: { value: 'Some notes' } });
+        });
+
+        await act(async () => {
+            fireEvent.click(submitButton);
+        });
+
+        expect(screen.getByText(/Invalid time format. Use HH:MM AM\/PM./)).toBeInTheDocument();
+    });
 });
