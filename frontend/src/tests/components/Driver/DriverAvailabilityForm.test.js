@@ -185,6 +185,11 @@ describe("DriverAvailabilityForm tests", () => {
             fireEvent.click(submitButton);
         });
 
-        expect(screen.getByText(/Invalid time format. Use HH:MM AM\/PM./)).toBeInTheDocument();
+        // There should be 2 error messages for the invalid time format on startTime and endTime
+        const errorMessages = screen.getAllByText(/Invalid time format. Use HH:MM AM\/PM./);
+        expect(errorMessages).toHaveLength(2); 
+
+        expect(screen.getByTestId("DriverAvailabilityForm-startTime")).toHaveClass("is-invalid");
+        expect(screen.getByTestId("DriverAvailabilityForm-endTime")).toHaveClass("is-invalid");
     });
 });
