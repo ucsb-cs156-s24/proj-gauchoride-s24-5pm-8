@@ -2,12 +2,59 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-
+import { useBackend } from 'main/utils/useBackend';
 
 
 function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "Assign Driver" }) {
     const navigate = useNavigate();
-    
+
+    // Stryker disable all  
+    const { data: drivers } =
+        useBackend(
+            [`/api/drivers/all`],
+            {  
+                method: "GET",
+                url: `/api/drivers/all`
+                
+            },
+        );
+    // Stryker restore all
+
+    // Stryker disable all
+    const { data: shifts } =
+        useBackend(
+            
+            [`/api/shift/all`],
+            {  
+                method: "GET",
+                url: `/api/shift/all`
+                
+            },
+        );
+    // Stryker restore all
+
+    // Stryker disable all
+    const [Shifts, setShift] = useState([]);
+    useEffect(() => {
+        if (drivers && shifts) {
+            var driverMap = new Map();
+            
+            drivers.forEach(driver => {
+                driverMap.set(driver.id, driver.fullName);
+            });
+
+            shifts.forEach(shift => {
+                setShift(prevShifts => [...prevShifts, {
+                    id: shift.id,
+                    driver: driverMap.get(shift.driverID),
+                    day: shift.day,
+                    shiftStart: shift.shiftStart,
+                    shiftEnd: shift.shiftEnd,
+                }]);
+            });
+        }
+    }, [drivers, shifts]);
+    // Stryker restore all
 
     // Stryker disable all
     const {
@@ -17,46 +64,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
     } = useForm(
         { defaultValues: initialContents }
     );
-
-
-    const [shifts, setShifts] = useState([]);
-    useEffect(() => {
-        // Fetch the shifts from the backend
-        const fetchShifts = async () => {
-            try {
-                const response = await fetch('/api/shift/all');
-                const data = await response.json();
-                setShifts(data);
-            } catch (error) {
-                console.error('Error fetching shifts:', error);
-            }
-        };
-        fetchShifts();
-    }, []);
-
-    const [driver, setDriver] = useState([]);
-    useEffect(() => {
-        // Fetch the shifts from the backend
-        const fetchShifts = async () => {
-            try {
-                const response = await fetch('/api/drivers/all');
-                const data = await response.json();
-                setDriver(data);
-            } catch (error) {
-                console.error('Error fetching shifts:', error);
-            }
-        };
-        fetchShifts();
-    }, []);
-
-    shifts.forEach(shifts => {   // link the driver to the shift
-        driver.forEach(driver => {
-            if (shifts.driverID === driver.id) {
-                shifts.driver = driver.fullName;
-            }
-        });
-    });
-
+    // Stryker restore all
 
     const testIdPrefix = "RideAssignDriverForm";
 
@@ -79,29 +87,20 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                 </Form.Group>
             )}
 
-            
-
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="shiftId">Shift Id</Form.Label>
                 <Form.Select
                     data-testid={testIdPrefix + "-shiftId"}
                     id="shiftId"
+                    {...register("shiftId")}
                     defaultValue={initialContents?.shiftId}
-                    isInvalid={Boolean(errors.shiftId)}
-
-                    {...register("shiftId", {
-                        required: "Shift Id is required."
-                    })}
                 >
-                    {shifts.map(shifts=> (
-                        <option key={shifts.id} value={shifts.id}>
-                            {shifts.id} - {shifts.driver} - {shifts.day} {shifts.shiftStart}-{shifts.shiftEnd}
+                    {Shifts.map((shift) => (
+                        <option key={shift.id} data-testid={testIdPrefix + "-shiftId-" + shift.id} value={shift.id}>
+                           {shift.id} - {shift.driver} - {shift.day} {shift.shiftStart}-{shift.shiftEnd}
                         </option>
                     ))}
                 </Form.Select>
-                <Form.Control.Feedback type="invalid">
-                    {errors.shiftId?.message}
-                </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" >
@@ -136,10 +135,10 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     type="text"
                     {...register("end")}
                     disabled
-                    defaultValue={initialContents?.endTime}     
+                    defaultValue={initialContents?.endTime}
                 />
             </Form.Group>
-            
+
             <Form.Group className="mb-3" >
                 <Form.Label htmlFor="pickupBuilding">Pick Up Building</Form.Label>
                 <Form.Control
@@ -149,7 +148,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     isInvalid={Boolean(errors.pickupBuilding)}
                     {...register("pickupBuilding")}
                     disabled
-                    defaultValue={initialContents?.pickupBuilding} 
+                    defaultValue={initialContents?.pickupBuilding}
                 />
             </Form.Group>
 
@@ -162,7 +161,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     isInvalid={Boolean(errors.pickupRoom)}
                     {...register("pickupRoom")}
                     disabled
-                    defaultValue={initialContents?.pickupRoom} 
+                    defaultValue={initialContents?.pickupRoom}
                 />
             </Form.Group>
 
@@ -188,7 +187,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     isInvalid={Boolean(errors.dropoffRoom)}
                     {...register("dropoffRoom")}
                     disabled
-                    defaultValue={initialContents?.dropoffRoom} 
+                    defaultValue={initialContents?.dropoffRoom}
                 />
             </Form.Group>
 
@@ -201,7 +200,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     isInvalid={Boolean(errors.course)}
                     {...register("course")}
                     disabled
-                    defaultValue={initialContents?.course} 
+                    defaultValue={initialContents?.course}
                 />
             </Form.Group>
 
@@ -214,7 +213,7 @@ function RideAssignDriverForm({ initialContents, submitAction, buttonLabel = "As
                     isInvalid={Boolean(errors.notes)}
                     {...register("notes")}
                     disabled
-                    defaultValue={initialContents?.notes} 
+                    defaultValue={initialContents?.notes}
                 />
             </Form.Group>
 
