@@ -268,10 +268,10 @@ public class DriverAvailabilityControllerTests extends ControllerTestCase {
                         .build();
 
         DriverAvailability availability_edited = DriverAvailability.builder()
-                        .driverId(7)
-                        .day("Tuesday")
-                        .startTime("5:00 AM")
-                        .endTime("12:00 PM")
+                        .driverId(DriverId)
+                        .day("12/24/2024")
+                        .startTime("5:00AM")
+                        .endTime("12:00PM")
                         .notes("Early Shift")
                         .build();
 
