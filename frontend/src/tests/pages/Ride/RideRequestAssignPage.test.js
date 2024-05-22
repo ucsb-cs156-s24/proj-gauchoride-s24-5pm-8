@@ -132,6 +132,7 @@ describe("RideRequestAssignPage tests", () => {
             await findByTestId("RideAssignDriverForm-day");
 
             const shiftIdField = await waitFor(() => getByTestId("RideAssignDriverForm-shiftId"))
+            const shiftIdFieldId = await waitFor(() => getByTestId("RideAssignDriverForm-shiftId-1"))
             const dayField = getByTestId("RideAssignDriverForm-day");
             const startTimeField = getByTestId("RideAssignDriverForm-start");
             const endTimeField = getByTestId("RideAssignDriverForm-end");
@@ -141,7 +142,9 @@ describe("RideRequestAssignPage tests", () => {
             const pickupRoomField = getByTestId("RideAssignDriverForm-pickupRoom");
             const courseField = getByTestId("RideAssignDriverForm-course");
             const notesField = getByTestId("RideAssignDriverForm-notes");
+            
 
+            expect(shiftIdFieldId).toBeInTheDocument();
             expect(shiftIdField).toHaveValue("1");
             expect(dayField).toHaveValue("Tuesday");
             expect(startTimeField).toHaveValue("5:00PM");
