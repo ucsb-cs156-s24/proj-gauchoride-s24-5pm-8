@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
     @PostMapping(&quot;/new&quot;)
     public DriverAvailability postDriverAvailability(
             @Parameter(name=&quot;driverId&quot;) @RequestParam long driverId,
-            @Parameter(name=&quot;day&quot;) @RequestParam String day,
+            @Parameter(name=&quot;day&quot;) @RequestParam String day, // day of the week
             @Parameter(name=&quot;startTime&quot;) @RequestParam String startTime,
             @Parameter(name=&quot;endTime&quot;) @RequestParam String endTime,
             @Parameter(name=&quot;notes&quot;) @RequestParam String notes)
