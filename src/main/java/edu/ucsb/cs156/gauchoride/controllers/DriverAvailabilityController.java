@@ -39,7 +39,7 @@ public class DriverAvailabilityController extends ApiController{
     @PostMapping("/new")
     public DriverAvailability postDriverAvailability(
             @Parameter(name="driverId") @RequestParam long driverId,
-            @Parameter(name="day") @RequestParam String day,
+            @Parameter(name="day") @RequestParam String day, // day of the week
             @Parameter(name="startTime") @RequestParam String startTime,
             @Parameter(name="endTime") @RequestParam String endTime,
             @Parameter(name="notes") @RequestParam String notes)
