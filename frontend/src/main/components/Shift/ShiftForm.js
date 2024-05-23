@@ -137,7 +137,7 @@ function ShiftForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                     {...register("driverBackupID")}
                 >
                 {drivers && drivers.map((driver) => (
-                    <option key={driver.id} data-testid={testIdPrefix + "-driverId-" + driver.id}  value={driver.id.toString()}>{driver.id} - {driver.fullName}</option>
+                    <option key={driver.id} data-testid={testIdPrefix + "-driverBackupId-" + driver.id}  value={driver.id.toString()}>{driver.id} - {driver.fullName}</option>
                 ))}
                 </Form.Select>
             </Form.Group>

@@ -67,6 +67,9 @@ describe("ShiftForm tests", () => {
 
         expect(await screen.findByTestId(`${testId}-id`)).toBeInTheDocument();
         expect(screen.getByText(`Id`)).toBeInTheDocument();
+
+        expect(screen.getByTestId("ShiftForm-driverId-1")).toBeInTheDocument();
+        expect(screen.getByTestId("ShiftForm-driverBackupId-1")).toBeInTheDocument();
     });
 
 
@@ -366,5 +369,5 @@ describe("ShiftForm tests", () => {
     
         // Resetting input
         fireEvent.change(shiftEndInput, { target: { value: "" } });
-    }); 
+    });
 });
