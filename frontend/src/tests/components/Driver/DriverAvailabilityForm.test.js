@@ -115,7 +115,6 @@ describe("DriverAvailabilityForm tests", () => {
         expect(screen.getByText(/Day of the Week is required./)).toBeInTheDocument();
         expect(screen.getByText(/Start Time is required./)).toBeInTheDocument();
         expect(screen.getByText(/End Time is required./)).toBeInTheDocument();
-        expect(screen.getByText(/Notes are required./)).toBeInTheDocument();
     });
 
     test("No Error messages on good input", async () => {
@@ -154,7 +153,6 @@ describe("DriverAvailabilityForm tests", () => {
         expect(screen.queryByText(/Day of the Week is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/Start time is required./)).not.toBeInTheDocument();
         expect(screen.queryByText(/End time is required./)).not.toBeInTheDocument();
-        expect(screen.queryByText(/Notes are required./)).not.toBeInTheDocument();
     });
 
     test("displays error messages for invalid time format", async () => {

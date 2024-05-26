@@ -116,9 +116,7 @@ function DriverAvailabilityForm({
           type="text"
           placeholder="Include any additional notes here."
           isInvalid={Boolean(errors.notes)}
-          {...register("notes", {
-            required: "Notes are required.",
-          })}
+          {...register("notes")}
         />
         <Form.Control.Feedback type="invalid">
           {errors.notes?.message}
