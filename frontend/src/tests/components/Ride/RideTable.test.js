@@ -293,5 +293,6 @@ describe("RideTable tests", () => {
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ride/assigndriver/2'));
 
   });
+  
 
 });
