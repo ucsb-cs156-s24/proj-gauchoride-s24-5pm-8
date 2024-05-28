@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/proj-gauchoride-s24-5pm-8
 owner: ucsb-cs156-s24
 repo_name: proj-gauchoride-s24-5pm-8
-pull_requests: []
+pull_requests: [{"author":{"id":"U_kgDOBcwBsg","is_bot":false,"login":"bradygin","name":"Brady Gin"},"headRefName":"bg-riderAccess","number":37,"title":"bg - Removed tabs in navbar that Riders should not be able to access","url":"https://github.com/ucsb-cs156-s24/proj-gauchoride-s24-5pm-8/pull/37"}]
