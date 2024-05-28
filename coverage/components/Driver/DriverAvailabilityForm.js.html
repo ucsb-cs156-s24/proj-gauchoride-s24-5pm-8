@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -194,7 +194,16 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,14 +213,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">22x</span>
-<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,146 +343,154 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 &nbsp;
-function DriverAvailabilityForm({ initialContents, submitAction, buttonLabel = "Create" }) {
-    // Stryker disable all
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-    } = useForm(
-        { defaultValues: initialContents || {}, }
-    );
-    // Stryker restore all
-    const navigate = useNavigate();
+function DriverAvailabilityForm({
+  initialContents,
+  submitAction,
+  buttonLabel = "Create",
+}) {
+  // Stryker disable all
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ defaultValues: initialContents || {} });
+  // Stryker restore all
+  const navigate = useNavigate();
 &nbsp;
-    const testIdPrefix = "DriverAvailabilityForm";
-    return (
-        &lt;Form onSubmit={handleSubmit(submitAction)}&gt;
-            {initialContents &amp;&amp; (
-                &lt;Form.Group className="mb-3" &gt;
-                    &lt;Form.Label htmlFor="id"&gt;id&lt;/Form.Label&gt;
-                    &lt;Form.Control
-                        data-testid={testIdPrefix + "-id"}
-                        id="id"
-                        type="text"
-                        {...register("id")}
-                        value={initialContents.id}
-                        disabled
-                    /&gt;
-                &lt;/Form.Group&gt;
-            )}
-            &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="driverId"&gt;driverId&lt;/Form.Label&gt;
-                &lt;Form.Control
-                    data-testid={testIdPrefix + "-driverId"}
-                    id="driverId"
-                    type="text"
-                    isInvalid={Boolean(errors.driverId)}
-                    {...register("driverId", {
-                        required: "driverId is required.",
-                    })}
-                /&gt;
-                &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.driverId?.message}
-                &lt;/Form.Control.Feedback&gt;
-            &lt;/Form.Group&gt;
+  const testIdPrefix = "DriverAvailabilityForm";
 &nbsp;
-            &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="day"&gt;day&lt;/Form.Label&gt;
-                &lt;Form.Control
-                    data-testid={testIdPrefix + "-day"}
-                    id="day"
-                    type="text"
-                    isInvalid={Boolean(errors.day)}
-                    {...register("day", {
-                        required: "day is required."
-                    })}
-                /&gt;
-                &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.day?.message}
-                &lt;/Form.Control.Feedback&gt;
-            &lt;/Form.Group&gt;
+  // Stryker disable next-line Regex
+  const time_regex = /^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/i;
 &nbsp;
-            &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="startTime"&gt;startTime&lt;/Form.Label&gt;
-                &lt;Form.Control
-                    data-testid={testIdPrefix + "-startTime"}
-                    id="startTime"
-                    type="text"
-                    isInvalid={Boolean(errors.startTime)}
-                    {...register("startTime", {
-                        required: "startTime is required."
-                    })}
-                /&gt;
-                &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.startTime?.message}
-                &lt;/Form.Control.Feedback&gt;
-            &lt;/Form.Group&gt;
+  return (
+    &lt;Form
+      onSubmit={handleSubmit((data) =&gt; {
+        const { driverId, ...filteredData } = data;
+        submitAction(filteredData);
+      })}
+    &gt;
+      {initialContents &amp;&amp; (
+        &lt;Form.Group className="mb-3"&gt;
+          &lt;Form.Label htmlFor="id"&gt;ID&lt;/Form.Label&gt;
+          &lt;Form.Control
+            data-testid={testIdPrefix + "-id"}
+            id="id"
+            type="text"
+            {...register("id")}
+            value={initialContents.id}
+            disabled
+          /&gt;
+        &lt;/Form.Group&gt;
+      )}
 &nbsp;
-            &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="endTime"&gt;endTime&lt;/Form.Label&gt;
-                &lt;Form.Control
-                    data-testid={testIdPrefix + "-endTime"}
-                    id="endTime"
-                    type="text"
-                    isInvalid={Boolean(errors.endTime)}
-                    {...register("endTime", {
-                        required: "endTime is required."
-                    })}
-                /&gt;
-                &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.endTime?.message}
-                &lt;/Form.Control.Feedback&gt;
-            &lt;/Form.Group&gt;
+      &lt;Form.Group className="mb-3"&gt;
+        &lt;Form.Label htmlFor="day"&gt;Day of the Week&lt;/Form.Label&gt;
+        &lt;Form.Select
+          data-testid={testIdPrefix + "-day"}
+          id="day"
+          isInvalid={Boolean(errors.day)}
+          {...register("day", {
+            required: "Day of the Week is required.",
+          })}
+        &gt;
+          &lt;option value=""&gt;Select a Day&lt;/option&gt;
+          &lt;option value="Monday"&gt;Monday&lt;/option&gt;
+          &lt;option value="Tuesday"&gt;Tuesday&lt;/option&gt;
+          &lt;option value="Wednesday"&gt;Wednesday&lt;/option&gt;
+          &lt;option value="Thursday"&gt;Thursday&lt;/option&gt;
+          &lt;option value="Friday"&gt;Friday&lt;/option&gt;
+          &lt;option value="Saturday"&gt;Saturday&lt;/option&gt;
+          &lt;option value="Sunday"&gt;Sunday&lt;/option&gt;
+        &lt;/Form.Select&gt;
+        &lt;Form.Control.Feedback type="invalid"&gt;
+          {errors.day?.message}
+        &lt;/Form.Control.Feedback&gt;
+      &lt;/Form.Group&gt;
 &nbsp;
-            &lt;Form.Group className="mb-3" &gt;
-                &lt;Form.Label htmlFor="notes"&gt;notes&lt;/Form.Label&gt;
-                &lt;Form.Control
-                    data-testid={testIdPrefix + "-notes"}
-                    id="notes"
-                    type="text"
-                    isInvalid={Boolean(errors.notes)}
-                    {...register("notes", {
-                        required: "notes is required."
-                    })}
-                /&gt;
-                &lt;Form.Control.Feedback type="invalid"&gt;
-                    {errors.notes?.message}
-                &lt;/Form.Control.Feedback&gt;
-            &lt;/Form.Group&gt;
+      &lt;Form.Group className="mb-3"&gt;
+        &lt;Form.Label htmlFor="startTime"&gt;Start Time&lt;/Form.Label&gt;
+        &lt;Form.Control
+          data-testid={testIdPrefix + "-startTime"}
+          id="startTime"
+          type="text"
+          placeholder="Enter time in the format HH:MM AM/PM (eg. 11:30 AM)"
+          isInvalid={Boolean(errors.startTime)}
+          {...register("startTime", {
+            required: "Start Time is required.",
+            pattern: {
+              value: time_regex,
+              message: "Invalid time format. Use HH:MM AM/PM.",
+            },
+          })}
+        /&gt;
+        &lt;Form.Control.Feedback type="invalid"&gt;
+          {errors.startTime?.message}
+        &lt;/Form.Control.Feedback&gt;
+      &lt;/Form.Group&gt;
 &nbsp;
-            &lt;Button
-                type="submit"
-                data-testid={testIdPrefix + "-submit"}
-            &gt;
-                {buttonLabel}
-            &lt;/Button&gt;
-            &lt;Button
-                variant="Secondary"
-                onClick={() =&gt; navigate(-1)}
-                data-testid={testIdPrefix + "-cancel"}
-            &gt;
-                Cancel
-            &lt;/Button&gt;
+      &lt;Form.Group className="mb-3"&gt;
+        &lt;Form.Label htmlFor="endTime"&gt;End Time&lt;/Form.Label&gt;
+        &lt;Form.Control
+          data-testid={testIdPrefix + "-endTime"}
+          id="endTime"
+          type="text"
+          placeholder="Enter time in the format HH:MM AM/PM (eg. 5:30 PM)"
+          isInvalid={Boolean(errors.endTime)}
+          {...register("endTime", {
+            required: "End Time is required.",
+            pattern: {
+              value: time_regex,
+              message: "Invalid time format. Use HH:MM AM/PM.",
+            },
+          })}
+        /&gt;
+        &lt;Form.Control.Feedback type="invalid"&gt;
+          {errors.endTime?.message}
+        &lt;/Form.Control.Feedback&gt;
+      &lt;/Form.Group&gt;
 &nbsp;
-        &lt;/Form&gt;
+      &lt;Form.Group className="mb-3"&gt;
+        &lt;Form.Label htmlFor="notes"&gt;Notes&lt;/Form.Label&gt;
+        &lt;Form.Control
+          data-testid={testIdPrefix + "-notes"}
+          id="notes"
+          type="text"
+          placeholder="Include any additional notes here."
+          isInvalid={Boolean(errors.notes)}
+          {...register("notes")}
+        /&gt;
+        &lt;Form.Control.Feedback type="invalid"&gt;
+          {errors.notes?.message}
+        &lt;/Form.Control.Feedback&gt;
+      &lt;/Form.Group&gt;
 &nbsp;
-    )
+      &lt;Button type="submit" data-testid={testIdPrefix + "-submit"}&gt;
+        {buttonLabel}
+      &lt;/Button&gt;
+      &lt;Button
+        variant="Secondary"
+        onClick={() =&gt; navigate(-1)}
+        data-testid={testIdPrefix + "-cancel"}
+      &gt;
+        Cancel
+      &lt;/Button&gt;
+    &lt;/Form&gt;
+  );
 }
 &nbsp;
-export default DriverAvailabilityForm;</pre></td></tr></table></pre>
+export default DriverAvailabilityForm;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 28 2024 11:11:00 GMT-0700 (Pacific Daylight Time)
+                at Tue May 28 2024 11:16:07 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
