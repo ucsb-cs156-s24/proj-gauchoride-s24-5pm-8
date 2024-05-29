@@ -6,7 +6,7 @@ import React, { useState } from 'react'; // Added missing imports
 
 export default function UsersTable({ users}) {
     // const [sortedUsers, setSortedUsers] = useState(users);
-    const [sort, ] = useState({ keyToSort: 'id', direction: 'asc' });
+    const [sort, ] = useState({ keyToSort: 'id'});
 
     // useEffect(() => {
     //     setSortedUsers(sortTableById(users, sort));
@@ -79,10 +79,8 @@ export default function UsersTable({ users}) {
     // }
 
     function sortTableById(array, sort) {
-        const { keyToSort, direction } = sort;
-        if (direction === 'asc') {
+        const {keyToSort} = sort;
             return [...array].sort((a, b) => a[keyToSort] - b[keyToSort]);
-        }
     }
 
 
