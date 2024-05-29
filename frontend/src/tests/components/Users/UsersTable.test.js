@@ -135,7 +135,10 @@ describe("UserTable tests", () => {
 
         const sampleUsers = [
             { id: 2, givenName: 'dkd', familyName: 'sdf', email: 'asdf@example.com', admin: true, driver: false, rider: false },
-            { id: 1, givenName: 'asdfa', familyName: 'asdfadsf', email: 'jane@example.com', admin: false, driver: true, rider: true },
+            { id: 4, givenName: 'asdfa', familyName: 'asdfadsf', email: 'jane@example.com', admin: false, driver: true, rider: true },
+            { id: 3, givenName: 'asd12321fa', familyName: 'asdfadsf', email: 'jane@example.com', admin: false, driver: true, rider: true },
+            { id: 1, givenName: 'asd34324fa', familyName: 'asdfadsf', email: 'jane@example.com', admin: false, driver: true, rider: true },
+
         ];
     
         test('initial state of sort should be { keyToSort: "id", direction: "asc" }', () => {
@@ -160,7 +163,15 @@ describe("UserTable tests", () => {
             });
 
             expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+            expect(getByTestId(`${testId}-cell-row-0-col-givenName`)).toHaveTextContent("asd34324fa");
             expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+            expect(getByTestId(`${testId}-cell-row-1-col-givenName`)).toHaveTextContent("dkd");
+
+            expect(getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
+            expect(getByTestId(`${testId}-cell-row-2-col-givenName`)).toHaveTextContent("asd12321fa");
+            expect(getByTestId(`${testId}-cell-row-3-col-id`)).toHaveTextContent("4");
+            expect(getByTestId(`${testId}-cell-row-3-col-givenName`)).toHaveTextContent("asdfa");
+
         });
     });
 

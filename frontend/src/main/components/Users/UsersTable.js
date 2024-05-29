@@ -80,7 +80,7 @@ export default function UsersTable({ users}) {
 
     function sortTableById(array, sort) {
         const { keyToSort, direction } = sort;
-        if (direction == 'asc') {
+        if (direction === 'asc') {
             return [...array].sort((a, b) => a[keyToSort] - b[keyToSort]);
         }
     }
