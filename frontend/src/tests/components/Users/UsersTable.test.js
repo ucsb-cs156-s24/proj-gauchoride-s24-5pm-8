@@ -1,7 +1,7 @@
-import React, { useState as useStateMock } from 'react';
-import { fireEvent, render, screen, act, waitFor} from "@testing-library/react";
+import React from 'react';
+import { fireEvent, render, act} from "@testing-library/react";
 import usersFixtures from "fixtures/usersFixtures";
-import UsersTable, { sortArray } from "main/components/Users/UsersTable"
+import UsersTable from "main/components/Users/UsersTable"
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
