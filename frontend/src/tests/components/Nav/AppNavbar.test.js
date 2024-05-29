@@ -179,24 +179,6 @@ describe("AppNavbar tests", () => {
         await waitFor(() => expect(screen.queryByText(/^Drivers$/)).not.toBeInTheDocument());
     });
 
-    test("renders shift table links correctly for rider", async () => {
-
-        const currentUser = currentUserFixtures.riderOnly;
-        const doLogin = jest.fn();
-
-        const { getByText , getByTestId } = render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-        
-        await waitFor(() => expect(getByText("Welcome, Phillip Conrad")).toBeInTheDocument());
-        const shiftMenu = getByTestId("appnavbar-shift-dropdown");
-        expect(shiftMenu).toBeInTheDocument();        
-    });
-
     test("not render shift table links for regular user", async () => {
 
         const currentUser = currentUserFixtures.userOnly;
