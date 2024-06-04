@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>43/43</span>
+                <span class='fraction'>12/39</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">28.57% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>2/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -223,7 +223,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1002x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,28 +231,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">501x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">170x</span>
-<span class="cline-any cline-yes">116x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">54x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">501x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">290x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">501x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">290x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -375,26 +375,26 @@ import { hasRole } from "main/utils/currentUser";
 import headerImg from "../../../assets/stork.png"
 import AppNavbarLocalhost from "main/components/Nav/AppNavbarLocalhost"
 &nbsp;
-function isParticipant(currentUser) {
-  return (
+function <span class="fstat-no" title="function not covered" >isParticipant(</span>currentUser) {
+<span class="cstat-no" title="statement not covered" >  return (</span>
     hasRole(currentUser, "ROLE_ADMIN")
     || hasRole(currentUser, "ROLE_DRIVER")
     || hasRole(currentUser, "ROLE_RIDER")
   );
 }
 &nbsp;
-function hasChat(currentUser) {
-  return (
+function <span class="fstat-no" title="function not covered" >hasChat(</span>currentUser) {
+<span class="cstat-no" title="statement not covered" >  return (</span>
     hasRole(currentUser, "ROLE_ADMIN")
     || hasRole(currentUser, "ROLE_DRIVER")
   );
 }
 &nbsp;
-function createRideRequest(currentUser) {
-  if (hasRole(currentUser, "ROLE_RIDER") || hasRole(currentUser, "ROLE_ADMIN")) {
-    return (&lt;NavDropdown.Item data-testid="appnavbar-ride-create-dropdown" as={Link} to="/ride/create"&gt;Request Ride&lt;/NavDropdown.Item&gt;)
+function <span class="fstat-no" title="function not covered" >createRideRequest(</span>currentUser) {
+<span class="cstat-no" title="statement not covered" >  if (hasRole(currentUser, "ROLE_RIDER") || hasRole(currentUser, "ROLE_ADMIN")) {</span>
+<span class="cstat-no" title="statement not covered" >    return (&lt;NavDropdown.Item data-testid="appnavbar-ride-create-dropdown" as={Link} to="/ride/create"&gt;Request Ride&lt;/NavDropdown.Item&gt;)</span>
   } else {
-    return (&lt;div data-testid="NO-appnavbar-ride-create-dropdown"&gt;&lt;/div&gt;)
+<span class="cstat-no" title="statement not covered" >    return (&lt;div data-testid="NO-appnavbar-ride-create-dropdown"&gt;&lt;/div&gt;)</span>
   }
 }
 &nbsp;
@@ -461,7 +461,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 )
               }
               {
-                !hasRole(currentUser, "ROLE_DRIVER") &amp;&amp; isParticipant(currentUser) &amp;&amp; !hasRole(currentUser, "ROLE_RIDER") &amp;&amp; (
+                hasRole(currentUser, "ROLE_ADMIN") (
                   &lt;NavDropdown title="Shifts" id="appnavbar-shift-dropdown" data-testid="appnavbar-shift-dropdown" &gt;
                     &lt;NavDropdown.Item data-testid="appnavbar-shift-dropdown-shifts" as={Link} to="/shift/"&gt;Shifts&lt;/NavDropdown.Item&gt;
                   &lt;/NavDropdown&gt;
@@ -529,7 +529,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue May 28 2024 17:10:41 GMT-0700 (Pacific Daylight Time)
+                at Mon Jun 03 2024 19:07:58 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
