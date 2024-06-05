@@ -7,11 +7,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 const mockedNavigate = jest.fn();
 
-// jest.mock('react-router-dom', () => ({
-//     ...jest.requireActual('react-router-dom'),
-//     useNavigate: () => mockedNavigate
-// }));
-
 
 describe("UserTable tests", () => {
     const queryClient = new QueryClient();
@@ -101,12 +96,10 @@ describe("UserTable tests", () => {
         expect(getByTestId(`${testId}-cell-row-2-col-rider`)).toHaveTextContent("true");
         expect(getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
 
-        // Verify the element is present
         const driverToggleButton = getByTestId('UsersTable-cell-row-0-col-Toggle Driver-button');
         expect(driverToggleButton).toBeInTheDocument();
 
 
-        // Simulate a click event on the button
         await act(async () => {
             fireEvent.click(driverToggleButton);
         });

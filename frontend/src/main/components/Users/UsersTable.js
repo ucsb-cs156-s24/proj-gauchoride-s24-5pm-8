@@ -1,16 +1,11 @@
 import OurTable, { ButtonColumn } from "main/components/OurTable"
 import { useBackendMutation } from "main/utils/useBackend";
-import React, { useState } from 'react'; // Added missing imports
+import React, { useState } from 'react'; 
 
 
 
 export default function UsersTable({ users}) {
-    // const [sortedUsers, setSortedUsers] = useState(users);
     const [sort, ] = useState({ keyToSort: 'id'});
-
-    // useEffect(() => {
-    //     setSortedUsers(sortTableById(users, sort));
-    // }, [users, sort]);
 
     function cellToAxiosParamsToggleRider(cell) {
         return {
@@ -74,10 +69,6 @@ export default function UsersTable({ users}) {
     );
     // Stryker enable all 
 
-    // function sortArray(array) {
-    //     return [...array].sort((a, b) => a.id - b.id);
-    // }
-
     function sortTableById(array, sort) {
         const {keyToSort} = sort;
             return [...array].sort((a, b) => a[keyToSort] - b[keyToSort]);
@@ -132,7 +123,6 @@ export default function UsersTable({ users}) {
         ButtonColumn("Toggle Rider", "danger", toggleRiderCallback, "UsersTable")
     ]
 
-    //const columnsToDisplay = showButtons ? buttonColumn : columns;
 
     return <OurTable
         data={sortTableById(users, sort)}
