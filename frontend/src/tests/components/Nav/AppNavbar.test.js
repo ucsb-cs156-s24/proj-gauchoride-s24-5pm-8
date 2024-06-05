@@ -529,6 +529,7 @@ describe("AppNavbar tests", () => {
         
         const driverPage = screen.queryByTestId("appnavbar-driver");
         expect(driverPage).toBeInTheDocument();        
+        
     });
 
     test("not render ride links for regular user", async () => {
