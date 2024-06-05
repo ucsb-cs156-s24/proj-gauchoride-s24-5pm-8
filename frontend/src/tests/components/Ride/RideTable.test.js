@@ -308,6 +308,7 @@ describe("RideTable tests", () => {
     await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ride/assigndriver/2'));
 
   });
+  
 
   test("Assigned column displays correct text based on shiftId", () => {
   const currentUser = currentUserFixtures.userOnly;
